@@ -18,7 +18,9 @@ def human_readable(file_size):
 
 
 if __name__ == '__main__':
-    BUCKET_NAME = os.environ.get('BUCKET_NAME', 'master.dockerproject.com')
+    BUCKET_NAME = os.environ.get('BUCKET_NAME')
+    if not BUCKET_NAME:
+        raise Exception('S3 BUCKET_NAME not set. Aborting...')
     s3 = boto3.client('s3')
 
     front_matter = """\
