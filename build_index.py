@@ -93,4 +93,5 @@ if __name__ == '__main__':
         Key='index.html',
         Body=fake_index.read(),
         ContentType='text/html; charset=utf-8'
+        CacheControl='max-age=3600'
     )
