@@ -92,6 +92,6 @@ if __name__ == '__main__':
         ACL='public-read',
         Key='index.html',
         Body=fake_index.read(),
-        ContentType='text/html; charset=utf-8'
+        ContentType='text/html; charset=utf-8',
         CacheControl='max-age=3600'
     )
