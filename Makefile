@@ -30,7 +30,7 @@ static_assets:
 		-e AWS_ACCESS_KEY_ID \
 		-e AWS_SECRET_ACCESS_KEY \
 		-e BUCKET_NAME \
-		-v $(PWD)/static:/static \
+		-v $(CURDIR)/static:/static \
 		--rm anigeo/awscli \
 		s3 sync --acl public-read /static "s3://$$BUCKET_NAME/static/"
 	@echo "Success!"
