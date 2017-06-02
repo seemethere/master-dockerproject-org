@@ -61,7 +61,7 @@ if __name__ == '__main__':
                 <td valign="top">
                 <a href=/{name}><img src=\"/static/{img}.png\" alt=\"[ICO]\">
                 </a></td>
-                <td><a href=/{name}">{name}</a></td>
+                <td><a href=/{name}>{name}</a></td>
                 <td>{size}</td>
                 <td>{last_modified}</td>
             </tr>
