@@ -89,6 +89,8 @@ if __name__ == '__main__':
     fake_index = six.StringIO(soup.prettify())
     s3.put_object(
         Bucket=BUCKET_NAME,
+        ACL='public-read',
         Key='index.html',
-        Body=fake_index.read()
+        Body=fake_index.read(),
+        ContentType='text/html; charset=utf-8'
     )
