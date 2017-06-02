@@ -32,5 +32,5 @@ static_assets:
 		-e BUCKET_NAME \
 		-v $(PWD)/static:/static \
 		--rm anigeo/awscli \
-		s3 sysc /static "s3://$$BUCKET_NAME/static/"
+		s3 sync /static "s3://$$BUCKET_NAME/static/"
 	@echo "Success!"
