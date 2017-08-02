@@ -6,6 +6,7 @@ import six
 import boto3
 import bs4 as bs
 
+ACCEPTABLE_PREFIXES = ('windows', 'linux', 'version', 'commit')
 
 def human_readable(file_size):
     out = ''
@@ -55,7 +56,7 @@ if __name__ == '__main__':
     s3_dump = s3.list_objects_v2(Bucket=BUCKET_NAME)
     middle_matter = ''
     for content in s3_dump['Contents']:
-        if content['Key'].startswith(('windows', 'linux')):
+        if content['Key'].startswith(ACCEPTABLE_PREFIXES):
             middle_matter += """\
             <tr>
                 <td valign="top">
