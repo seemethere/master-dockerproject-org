@@ -22,6 +22,14 @@ if __name__ == '__main__':
     BUCKET_NAME = os.environ.get('BUCKET_NAME')
     if not BUCKET_NAME:
         raise Exception('S3 BUCKET_NAME not set. Aborting...')
+    TITLE = os.environ.get("TITLE", "Docker Master Binaries")
+    DESCRIPTION = os.environ.get(
+        "DESCRIPTION", (
+            "These binaries are built from the master branch. "
+            "Want to use that cool new feature that was just merged? "
+            "Download your system's binary below."
+        )
+    )
     s3 = boto3.client('s3')
 
     front_matter = """\
@@ -30,16 +38,14 @@ if __name__ == '__main__':
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Docker Master Binaries</title>
+        <title>{TITLE}</title>
         <link rel="stylesheet" href="/static/style.css" />
     </head>
     <body>
-        <h1>Docker Master Binaries</h1>
+        <h1>{TITLE}</h1>
             <div class="wrapper">
                 <p>
-                These binaries are built from the master branch.
-                Want to use that cool new feature that was just merged?
-                Download your system's binary below.
+                {DESCRIPTION}
                 </p>
             <table>
                 <thead>
@@ -51,7 +57,10 @@ if __name__ == '__main__':
                     </tr>
                 </thead>
                 <tbody>
-    """
+    """.format(
+        TITLE=TITLE,
+        DESCRIPTION=DESCRIPTION
+    )
 
     s3_dump = s3.list_objects_v2(Bucket=BUCKET_NAME)
     middle_matter = ''
