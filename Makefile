@@ -20,6 +20,8 @@ index:
 	@docker run \
 		-e AWS_ACCESS_KEY_ID \
 		-e AWS_SECRET_ACCESS_KEY \
+		-e TITLE \
+		-e DESCRIPTION \
 		-e BUCKET_NAME \
 		--rm dockerproject-uploader
 	@echo "Success!"
